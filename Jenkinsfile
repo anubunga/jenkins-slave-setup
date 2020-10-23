@@ -37,7 +37,7 @@ pipeline {
                                 sh """
                                         zip jenkins-slave-setup.zip jenkins-slave-setup
 					ansible jenkins-slaves -i inventory -m shell -a "mkdir -p /var/www/html/my-repository"
-					scp jenkins-slave-setup.zip root@webserver:/var/www/html/my-repository
+					scp jenkins-slave-setup.zip root@devx-web001:/var/www/html/my-repository
                                 """
                         } //steps
                 } //stage
