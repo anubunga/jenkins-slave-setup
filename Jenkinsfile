@@ -12,7 +12,6 @@ pipeline {
 				sh """
 					pip install --upgrade pip
 					pip install ansible 
-					yum update -y
 					yum install -y zip
 				"""
 			} //steps
