@@ -26,9 +26,9 @@ pipeline {
                 stage("Test") {
                         steps {
                                 sh """
-                                        ansible jenkins-slaves -m shell -a "ls /home/jenkins/jenkins_slave"
-                                        ansible jenkins-slaves -m shell -a "id jenkins"
-                                        ansible jenkins-slaves -m shell -a "cat /home/jenkins/.ssh/authorized_keys"
+                                        ansible jenkins-slaves -i inventory -m shell -a "ls /home/jenkins/jenkins_slave"
+                                        ansible jenkins-slaves -i inventory -m shell -a "id jenkins"
+                                        ansible jenkins-slaves -i inventory -m shell -a "cat /home/jenkins/.ssh/authorized_keys"
                                 """
                         } //steps
                 } //stage
@@ -36,7 +36,7 @@ pipeline {
                         steps {
                                 sh """
                                         zip jenkins-slave-setup.zip jenkins-slave-setup
-					ansible jenkins-slaves -m shell -a "mkdir -p /var/www/html/my-repository"
+					ansible jenkins-slaves -i inventory -m shell -a "mkdir -p /var/www/html/my-repository"
 					scp jenkins-slave-setup.zip root@webserver:/var/www/html/my-repository
                                 """
                         } //steps
